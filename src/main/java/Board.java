@@ -25,4 +25,32 @@ public class Board {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < board.length; i++) {
+
+            if (i % 3 == 0) {
+                stringBuilder.append("\n");
+            }
+
+            for (int j = 0; j < board.length; j++) {
+                if (j % 3 == 0) {
+                    stringBuilder.append(" ");
+                }
+
+                if (this.board[i][j] == 0) {
+                    stringBuilder.append("_ ");
+                    continue;
+                }
+                stringBuilder.append(this.board[i][j]);
+                stringBuilder.append(' ');
+            }
+            stringBuilder.append('\n');
+        }
+
+        return stringBuilder.toString();
+    }
+
 }
