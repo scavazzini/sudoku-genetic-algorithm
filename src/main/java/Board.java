@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
@@ -18,7 +19,7 @@ public class Board {
     }
 
     public void setBoard(int[][] board) {
-        this.board = board;
+        this.board = Arrays.stream(board).map(int[]::clone).toArray(int[][]::new);
         this.fillEmptyCells();
         this.doFitness();
     }
