@@ -27,8 +27,47 @@ public class Board {
         }
     }
 
+    /**
+     * Fitness is increased by one for every valid cell
+     * @return board fitness
+     */
     public int doFitness() {
-        return 0;
+        int fitness = 0;
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+
+                if (this.board[i][j] < 1 || this.board[i][j] > board.length)
+                    return 0;
+
+                if (this.isValidCell(i, j))
+                    fitness++;
+
+            }
+        }
+
+        return fitness;
+    }
+
+    private boolean isValidCell(int i, int j) {
+
+        // Evaluate row
+        for (int k = 0; k < board.length; k++) {
+            if (k != j && this.board[i][j] == this.board[i][k]) {
+                return false;
+            }
+        }
+
+        // Evaluate column
+        for (int l = 0; l < board.length; l++) {
+            if (l != i && this.board[i][j] == this.board[l][j]) {
+                return false;
+            }
+        }
+
+        // TODO: Evaluate 3x3 blocks
+
+        return true;
     }
 
     @Override
