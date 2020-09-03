@@ -70,6 +70,10 @@ public class Board {
         return true;
     }
 
+    public int getFitness() {
+        return this.fitness;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

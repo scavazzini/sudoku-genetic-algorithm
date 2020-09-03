@@ -28,6 +28,7 @@ public class Main {
 
         Board board = new Board(initialBoard);
         System.out.println(board);
+        System.out.println("Board fitness: " + board.getFitness());
 
     }
 
