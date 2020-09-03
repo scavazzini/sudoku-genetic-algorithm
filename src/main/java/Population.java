@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Random;
 
 public class Population {
@@ -41,12 +43,18 @@ public class Population {
         return winner;
     }
 
+    public Board getBest() {
+        return Arrays.stream(this.boards)
+                .max(Comparator.comparing(Board::getFitness))
+                .orElse(null);
+    }
+
     public Board[] getBoards() {
         return boards;
     }
 
     @Override
     public String toString() {
-        return "Average fitness: " + this.avgFitness;
+        return String.format("Average fitness: %f. Best: %d", this.avgFitness, this.getBest().getFitness());
     }
 }
