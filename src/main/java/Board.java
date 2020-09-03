@@ -65,7 +65,16 @@ public class Board {
             }
         }
 
-        // TODO: Evaluate 3x3 blocks
+        // Evaluate 3x3 blocks
+        int iBlock = Math.floorDiv(i, 3) * 3;
+        int jBlock = Math.floorDiv(j, 3) * 3;
+        for (int k = 0; k < 3; k++) {
+            for (int l = 0; l < 3; l++) {
+                if (i != iBlock+k && j != jBlock+l && this.board[i][j] == this.board[iBlock+k][jBlock+l]) {
+                    return false;
+                }
+            }
+        }
 
         return true;
     }
