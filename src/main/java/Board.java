@@ -20,7 +20,7 @@ public class Board {
     public void setBoard(int[][] board) {
         this.board = board;
         this.fillEmptyCells();
-        this.fitness = this.doFitness();
+        this.doFitness();
     }
 
     private void fillEmptyCells() {
@@ -52,6 +52,7 @@ public class Board {
             }
         }
 
+        this.fitness = fitness;
         return fitness;
     }
 
@@ -83,6 +84,34 @@ public class Board {
         }
 
         return true;
+    }
+
+    public void doMutation(double mutationRate) {
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+
+                if (this.random.nextDouble() < mutationRate) {
+
+                    if (this.random.nextDouble() < .5) {
+                        if (this.board[i][j] == 9)
+                            this.board[i][j] = 1;
+                        else
+                            this.board[i][j]++;
+                    }
+                    else {
+                        if (this.board[i][j] == 1)
+                            this.board[i][j] = 9;
+                        else
+                            this.board[i][j]--;
+                    }
+
+                }
+
+            }
+        }
+        this.doFitness();
+
     }
 
     public int getFitness() {
