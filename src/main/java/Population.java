@@ -1,13 +1,15 @@
+import java.util.Random;
+
 public class Population {
 
     private Board[] boards;
     private double avgFitness;
 
-    public Population(int[][] initialBoard, int populationSize) {
+    public Population(int[][] initialBoard, int populationSize, Random random) {
         this.boards = new Board[populationSize];
 
         for (int i = 0; i < populationSize; i++) {
-            this.boards[i] = new Board(initialBoard);
+            this.boards[i] = new Board(initialBoard, random);
         }
 
         this.calculateAvgFitness();

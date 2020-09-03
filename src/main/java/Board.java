@@ -8,13 +8,8 @@ public class Board {
 
     private final Random random;
 
-    public Board(int[][] board) {
-        this.random = new Random();
-        setBoard(board);
-    }
-
-    public Board(int[][] board, long seed) {
-        this.random = new Random(seed);
+    public Board(int[][] board, Random random) {
+        this.random = random;
         setBoard(board);
     }
 
