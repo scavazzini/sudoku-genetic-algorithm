@@ -4,6 +4,7 @@ public class Board {
     private static final long SEED = 1834913443;
 
     private int[][] board;
+    private int fitness;
 
     public Board(int[][] board) {
         setBoard(board);
@@ -11,7 +12,8 @@ public class Board {
 
     public void setBoard(int[][] board) {
         this.board = board;
-        fillEmptyCells();
+        this.fillEmptyCells();
+        this.fitness = this.doFitness();
     }
 
     private void fillEmptyCells() {
@@ -23,6 +25,10 @@ public class Board {
                 }
             }
         }
+    }
+
+    public int doFitness() {
+        return 0;
     }
 
     @Override
