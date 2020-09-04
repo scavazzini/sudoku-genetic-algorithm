@@ -142,4 +142,7 @@ public class Board {
         return stringBuilder.toString();
     }
 
+    public int[][] getGrid() {
+        return this.board;
+    }
 }
