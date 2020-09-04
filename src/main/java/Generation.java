@@ -55,6 +55,7 @@ public class Generation {
             this.currentPopulation.setPopulation(this.nextPopulation);
         }
 
+        System.out.println(bestBoards[0].fixedBoardToString());
         System.out.printf("\nResult (%d/81):%n", bestBoards[0].getFitness());
         System.out.println(bestBoards[0]);
     }

@@ -3,6 +3,7 @@ import java.util.Random;
 
 public class Board {
 
+    private final int[][] fixedCells;
     private int[][] board;
     private int fitness;
 
@@ -10,6 +11,7 @@ public class Board {
 
     public Board(int[][] board, Random random) {
         this.random = random;
+        this.fixedCells = Arrays.stream(board).map(int[]::clone).toArray(int[][]::new);
         setBoard(board);
     }
 
@@ -117,6 +119,18 @@ public class Board {
 
     @Override
     public String toString() {
+        return this.stringify(this.board);
+    }
+
+    public int[][] getGrid() {
+        return this.board;
+    }
+
+    public String fixedBoardToString() {
+        return this.stringify(this.fixedCells);
+    }
+
+    private String stringify(int[][] board) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < board.length; i++) {
@@ -130,20 +144,16 @@ public class Board {
                     stringBuilder.append(" ");
                 }
 
-                if (this.board[i][j] == 0) {
+                if (board[i][j] == 0) {
                     stringBuilder.append("_ ");
                     continue;
                 }
-                stringBuilder.append(this.board[i][j]);
+                stringBuilder.append(board[i][j]);
                 stringBuilder.append(' ');
             }
             stringBuilder.append('\n');
         }
 
         return stringBuilder.toString();
-    }
-
-    public int[][] getGrid() {
-        return this.board;
     }
 }
