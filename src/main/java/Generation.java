@@ -1,5 +1,22 @@
 public class Generation {
 
+    /**
+     * Example of what this crossover does:
+     *
+     * 1 1 1 1 1 1 1 1 1     2 2 2 2 2 2 2 2 2     1 1 1 1 1 1 1 1 1       2 2 2 2 2 2 2 2 2
+     * 1 1 1 1 1 1 1 1 1     2 2 2 2 2 2 2 2 2     2 2 2 2 2 2 2 2 2       1 1 1 1 1 1 1 1 1
+     * 1 1 1 1 1 1 1 1 1     2 2 2 2 2 2 2 2 2     1 1 1 1 1 1 1 1 1       2 2 2 2 2 2 2 2 2
+     * 1 1 1 1 1 1 1 1 1     2 2 2 2 2 2 2 2 2     2 2 2 2 2 2 2 2 2       1 1 1 1 1 1 1 1 1
+     * 1 1 1 1 1 1 1 1 1  +  2 2 2 2 2 2 2 2 2  =  1 1 1 1 1 1 1 1 1  and  2 2 2 2 2 2 2 2 2
+     * 1 1 1 1 1 1 1 1 1     2 2 2 2 2 2 2 2 2     2 2 2 2 2 2 2 2 2       1 1 1 1 1 1 1 1 1
+     * 1 1 1 1 1 1 1 1 1     2 2 2 2 2 2 2 2 2     1 1 1 1 1 1 1 1 1       2 2 2 2 2 2 2 2 2
+     * 1 1 1 1 1 1 1 1 1     2 2 2 2 2 2 2 2 2     2 2 2 2 2 2 2 2 2       1 1 1 1 1 1 1 1 1
+     * 1 1 1 1 1 1 1 1 1     2 2 2 2 2 2 2 2 2     1 1 1 1 1 1 1 1 1       2 2 2 2 2 2 2 2 2
+     *
+     *
+     * @param parent1 First parent
+     * @param parent2 Second parent
+     */
     public void crossover(Board parent1, Board parent2) {
 
         int[][][] parents = {parent1.getGrid(), parent2.getGrid()};
