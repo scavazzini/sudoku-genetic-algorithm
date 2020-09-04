@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -26,10 +28,9 @@ public class Main {
             {3, 4, 5, 2, 8, 6, 1, 7, 9},
         };
 
-        Board board = new Board(initialBoard);
-        System.out.println(board);
-        System.out.println("Board fitness: " + board.getFitness());
-
+        Random random = new Random(666);
+        Generation generation = new Generation(initialBoard, 150, random);
+        generation.run();
     }
 
 }
