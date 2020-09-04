@@ -80,23 +80,8 @@ public class Board {
                 if (this.fixedCells[i][j] != 0)
                     continue;
 
-                if (this.random.nextDouble() < mutationRate) {
-
-                    if (this.random.nextDouble() < .5) {
-                        if (this.board[i][j] == 9)
-                            this.board[i][j] = 1;
-                        else
-                            this.board[i][j]++;
-                    }
-                    else {
-                        if (this.board[i][j] == 1)
-                            this.board[i][j] = 9;
-                        else
-                            this.board[i][j]--;
-                    }
-
-                }
-
+                if (this.random.nextDouble() < mutationRate)
+                    this.board[i][j] = this.random.nextInt(9) + 1;
             }
         }
         this.doFitness();
