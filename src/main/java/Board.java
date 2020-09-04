@@ -85,10 +85,12 @@ public class Board {
     }
 
     public void doMutation(double mutationRate) {
-        // FIXME: Mutation may not be applied on fixed cells
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
+
+                if (this.fixedCells[i][j] != 0)
+                    continue;
 
                 if (this.random.nextDouble() < mutationRate) {
 
