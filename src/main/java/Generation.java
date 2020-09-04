@@ -9,28 +9,28 @@ public class Generation {
     private final int[][] initialBoard;
     private final int populationSize;
     private double mutationRate = .03;
-    private double tournamentRate = .06;
+    private double tournamentRate = .08;
     private double crossoverRate = .6;
 
-    public Generation(int[][] initialBoard, int populationSize, Random random) {
+    public Generation(int[][] initialBoard, int populationSize) {
         this.initialBoard = initialBoard;
         this.populationSize = populationSize;
-        this.random = random;
+        this.random = new Random();
     }
 
-    public void run() {
+    public void run(int generations) {
 
         Board[] bestBoards = null;
 
         this.currentPopulation = new Population(this.initialBoard, this.populationSize, this.random);
-        for (int gen = 0; gen < 10_000; gen++) {
+        for (int gen = 1; gen <= generations; gen++) {
 
             System.out.println("Generation " + gen + ": " + this.currentPopulation);
             bestBoards = this.currentPopulation.getBest(2);
 
             this.nextPopulation = new Population(this.initialBoard, this.populationSize, this.random);
 
-            if (bestBoards[0].getFitness() == 81) {
+            if (bestBoards[0].getFitness() == 1944) {
                 break;
             }
 
@@ -56,7 +56,7 @@ public class Generation {
         }
 
         System.out.println(bestBoards[0].fixedBoardToString());
-        System.out.printf("\nResult (%d/81):%n", bestBoards[0].getFitness());
+        System.out.printf("\nResult (%d/1944):%n", bestBoards[0].getFitness());
         System.out.println(bestBoards[0]);
     }
 
@@ -94,15 +94,23 @@ public class Generation {
         parent2.setBoard(children[1]);
     }
 
-    public void setMutationRate(double mutationRate) {
+    public Generation setMutationRate(double mutationRate) {
         this.mutationRate = mutationRate;
+        return this;
     }
 
-    public void setTournamentRate(double tournamentRate) {
+    public Generation setTournamentRate(double tournamentRate) {
         this.tournamentRate = tournamentRate;
+        return this;
     }
 
-    public void setCrossoverRate(double crossoverRate) {
+    public Generation setCrossoverRate(double crossoverRate) {
         this.crossoverRate = crossoverRate;
+        return this;
+    }
+
+    public Generation setSeed(long seed) {
+        this.random.setSeed(seed);
+        return this;
     }
 }

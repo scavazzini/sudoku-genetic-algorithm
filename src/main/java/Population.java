@@ -69,6 +69,6 @@ public class Population {
 
     @Override
     public String toString() {
-        return String.format("Average fitness: %f. Best: %d", this.avgFitness, this.getBest(1)[0].getFitness());
+        return String.format("Average fitness: %f. Best: %d/1944", this.avgFitness, this.getBest(1)[0].getFitness());
     }
 }
