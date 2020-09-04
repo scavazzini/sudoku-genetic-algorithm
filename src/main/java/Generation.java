@@ -77,7 +77,7 @@ public class Generation {
      * @param parent1 First parent
      * @param parent2 Second parent
      */
-    public void crossover(Board parent1, Board parent2) {
+    private void crossover(Board parent1, Board parent2) {
 
         int[][][] parents = {parent1.getGrid(), parent2.getGrid()};
         int[][][] children = {new int[9][9], new int[9][9]};

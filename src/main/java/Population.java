@@ -63,7 +63,7 @@ public class Population {
         this.calculateAvgFitness();
     }
 
-    public Board[] getBoards() {
+    private Board[] getBoards() {
         return boards;
     }
 

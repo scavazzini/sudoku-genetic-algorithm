@@ -37,7 +37,7 @@ public class Board {
      *
      * @return board fitness (0 - 1944)
      */
-    public int doFitness() {
+    private int doFitness() {
         int fitness = 0;
 
         for (int i = 0; i < board.length; i++) {
