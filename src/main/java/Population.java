@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Population {
 
@@ -43,10 +44,23 @@ public class Population {
         return winner;
     }
 
-    public Board getBest() {
+    public Board[] getBest(int quantity) {
         return Arrays.stream(this.boards)
-                .max(Comparator.comparing(Board::getFitness))
-                .orElse(null);
+                .sorted(Comparator.comparing(Board::getFitness).reversed())
+                .limit(quantity)
+                .collect(Collectors.toList())
+                .toArray(new Board[quantity]);
+    }
+
+    public void setBoard(int index, Board board) {
+         this.boards[index].setBoard(board.getGrid());
+    }
+
+    public void setPopulation(Population nextPopulation) {
+        for(int i = 0; i < this.boards.length; i++){
+            this.boards[i].setBoard(nextPopulation.getBoards()[i].getGrid());
+        }
+        this.calculateAvgFitness();
     }
 
     public Board[] getBoards() {
@@ -55,6 +69,6 @@ public class Population {
 
     @Override
     public String toString() {
-        return String.format("Average fitness: %f. Best: %d", this.avgFitness, this.getBest().getFitness());
+        return String.format("Average fitness: %f. Best: %d", this.avgFitness, this.getBest(1)[0].getFitness());
     }
 }
