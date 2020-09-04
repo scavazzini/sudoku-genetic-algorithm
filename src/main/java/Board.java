@@ -32,8 +32,10 @@ public class Board {
     }
 
     /**
-     * Fitness is increased by one for every valid cell
-     * @return board fitness
+     * Every cell starts with 24 points that are decremented by one for each invalid position (row, column and block).
+     * The board fitness is the sum of all cell points.
+     *
+     * @return board fitness (0 - 1944)
      */
     public int doFitness() {
         int fitness = 0;
@@ -44,44 +46,30 @@ public class Board {
                 if (this.board[i][j] < 1 || this.board[i][j] > board.length)
                     return 0;
 
-                if (this.isValidCell(i, j))
-                    fitness++;
+                fitness += 24;
 
+                //Evaluate row
+                for (int k = 0; k < board.length; k++)
+                    if (k != j && this.board[i][j] == this.board[i][k])
+                        fitness--;
+
+                // Evaluate column
+                for (int l = 0; l < board.length; l++)
+                    if (l != i && this.board[i][j] == this.board[l][j])
+                        fitness--;
+
+                // Evaluate 3x3 blocks
+                int iBlock = Math.floorDiv(i, 3) * 3;
+                int jBlock = Math.floorDiv(j, 3) * 3;
+                for (int k = 0; k < 3; k++)
+                    for (int l = 0; l < 3; l++)
+                        if (i != iBlock+k && j != jBlock+l && this.board[i][j] == this.board[iBlock+k][jBlock+l])
+                            fitness--;
             }
         }
 
         this.fitness = fitness;
         return fitness;
-    }
-
-    private boolean isValidCell(int i, int j) {
-
-        // Evaluate row
-        for (int k = 0; k < board.length; k++) {
-            if (k != j && this.board[i][j] == this.board[i][k]) {
-                return false;
-            }
-        }
-
-        // Evaluate column
-        for (int l = 0; l < board.length; l++) {
-            if (l != i && this.board[i][j] == this.board[l][j]) {
-                return false;
-            }
-        }
-
-        // Evaluate 3x3 blocks
-        int iBlock = Math.floorDiv(i, 3) * 3;
-        int jBlock = Math.floorDiv(j, 3) * 3;
-        for (int k = 0; k < 3; k++) {
-            for (int l = 0; l < 3; l++) {
-                if (i != iBlock+k && j != jBlock+l && this.board[i][j] == this.board[iBlock+k][jBlock+l]) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
     }
 
     public void doMutation(double mutationRate) {
